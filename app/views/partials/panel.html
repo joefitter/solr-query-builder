@@ -1,0 +1,27 @@
+<div>
+  <label ng-show="length > 1">AND-</label>
+  <div class="well">
+    <div ng-repeat="searchline in model" class="or">
+      <form role="form" class="form-inline">
+        <div class="form-group">
+          <select class="form-control" ng-model="searchline.field" placeholder="Field" ng-options="obj as obj for obj in fields">
+            <option value="">All Fields</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control" ng-model="searchline.type" ng-options="obj as obj for obj in type"></select>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="searchline.q" placeholder="Search Text" title="something">
+        </div>
+        <span class="pull-right">
+          <button class="btn btn-primary" ng-click="and()" ng-disabled="$index < searchgroup.length -1">And</button>
+          <button class="btn btn-primary" ng-click="or()">Or</button>
+          <button class="btn btn-danger" ng-click="remove(searchline)" ng-disabled="$index === 0 && index === 0">Delete</button>
+        </span>
+      </form>
+
+      <label ng-show="model.length > 1 && $index < model.length -1">OR-</label>
+    </div>
+  </div>
+</div>

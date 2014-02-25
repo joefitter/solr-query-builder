@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <label>
+    <a href="" ng-click="toggleAdvanced()">Advanced Options</a>
+  </label>
+  <form ng-show="!advanced" class="form-inline">
+    <div class="well">
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="searchline.q" placeholder="Search Text">
+      </div>
+    </div>
+  </form>
+  <panel ng-show="advanced" ng-repeat="param in parameters" model="param" index="{{$index}}" fields="fields"></panel>
+    <button class="btn btn-success" ng-click="go()">Go!</button>
+    <button class="btn btn-danger" ng-click="reset()">Reset</button>  
+</div>
+<table class="table" ng-show="records.length > 0">
+  <thead>
+    <tr>
+      <th ng-repeat="field in fields">{{field}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="record in records">
+      <td ng-repeat="field in fields">{{record[field]}}</td>
+    </tr>
+  </tbody>
+</table>
+<pre>Collection:
+{{parameters | json}}</pre>
